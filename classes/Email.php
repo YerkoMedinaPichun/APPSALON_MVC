@@ -35,7 +35,7 @@ Class Email{
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ".$this->nombre."</strong> Has creado tu cuenta en AppSalon, solo debes confirmarla presionando el siguiente enlace.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='" . $_SERVER["HTTP_HOST"] . "/confirmar-cuenta?token=". $this->token ."'>Confirmar Cuenta</a></p>";//http://localhost:3000
+        $contenido .= "<p>Presiona aquí: <a href='" . $_SERVER["REQUEST_URI"] . "/confirmar-cuenta?token=". $this->token ."'>Confirmar Cuenta</a></p>";//http://localhost:3000
         $contenido .= '<p>Si no solicitaste esta cuenta, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
         $mail->Body = $contenido;
@@ -71,7 +71,7 @@ MAIL_ENCRYPTION=tls */
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ".$this->nombre."</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='" . $_SERVER["HTTP_HOST"] . "/recuperar?token=". $this->token ."'>Reestablecer Contraseña</a></p>";
+        $contenido .= "<p>Presiona aquí: <a href='" . $_SERVER["REQUEST_URI"] . "/recuperar?token=". $this->token ."'>Reestablecer Contraseña</a></p>";
         $contenido .= '<p>Si no solicitaste reestablecer tu contraseña, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
         $mail->Body = $contenido;
