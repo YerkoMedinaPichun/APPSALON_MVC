@@ -1,5 +1,4 @@
 <?php 
-
 namespace Classes;
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -83,3 +82,4 @@ MAIL_ENCRYPTION=tls */
 }
 
 ?>
+
