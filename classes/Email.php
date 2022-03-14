@@ -27,6 +27,7 @@ Class Email{
         $mail->Port = $_ENV['PORT'];
         $mail->Username = $_ENV['USER'];
         $mail->Password = $_ENV['PASS'];
+        $mail->SMTPSecure = 'tls';
         $mail->setFrom('yrk.27.medina@gmail.com');
         $mail->addAddress('yrk.27.medina@gmail.com','Appsalon.com');
         $mail->Subject = 'Confirma tu cuenta';
@@ -63,6 +64,7 @@ MAIL_ENCRYPTION=tls */
         $mail->Port = $_ENV['PORT'];
         $mail->Username = $_ENV['USER'];
         $mail->Password = $_ENV['PASS'];
+        $mail->SMTPSecure = 'tls';
         $mail->setFrom('yrk.27.medina@gmail.com');
         $mail->addAddress('yrk.27.medina@gmail.com','Appsalon.com');
         $mail->Subject = 'Reestablece tu contraseña';
