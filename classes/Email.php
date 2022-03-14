@@ -27,7 +27,7 @@ Class Email{
         $mail->setFrom('yrk.27.medina@gmail.com');
         $mail->addAddress('yrk.27.medina@gmail.com','Appsalon.com');
         $mail->Subject = 'Confirma tu cuenta';
-
+        
 
         //Set HTML
         $mail->isHTML(TRUE);
@@ -35,7 +35,7 @@ Class Email{
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ".$this->nombre."</strong> Has creado tu cuenta en AppSalon, solo debes confirmarla presionando el siguiente enlace.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='https://shrouded-beach-53202.herokuapp.com/confirmar-cuenta?token=". $this->token ."'>Confirmar Cuenta</a></p>";//http://localhost:3000
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['DB_HOST'] . "/confirmar-cuenta?token=". $this->token ."'>Confirmar Cuenta</a></p>";//http://localhost:3000
         $contenido .= '<p>Si no solicitaste esta cuenta, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
         $mail->Body = $contenido;
@@ -71,7 +71,7 @@ MAIL_ENCRYPTION=tls */
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ".$this->nombre."</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='https://shrouded-beach-53202.herokuapp.com/recuperar?token=". $this->token ."'>Reestablecer Contraseña</a></p>";
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['DB_HOST'] . "/recuperar?token=". $this->token ."'>Reestablecer Contraseña</a></p>";
         $contenido .= '<p>Si no solicitaste reestablecer tu contraseña, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
         $mail->Body = $contenido;
