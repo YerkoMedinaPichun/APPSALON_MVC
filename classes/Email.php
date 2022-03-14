@@ -1,6 +1,8 @@
 <?php 
 namespace Classes;
-
+use Dotenv\Dotenv as Dotenv;
+$dotenv = Dotenv::createImmutable('../includes/.env');
+$dotenv->safeLoad();
 use PHPMailer\PHPMailer\PHPMailer;
 
 Class Email{
@@ -8,6 +10,7 @@ Class Email{
     public $email;
     public $nombre;
     public $token;
+    
 
     public function __construct($email,$nombre,$token)
     {
@@ -19,11 +22,11 @@ Class Email{
         //Crear el obj de email
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'fbce7677b12432';
-        $mail->Password = '1d8f9c16198f32';
+        $mail->Port = $_ENV['PORT'];
+        $mail->Username = $_ENV['USER'];
+        $mail->Password = $_ENV['PASS'];
         $mail->setFrom('yrk.27.medina@gmail.com');
         $mail->addAddress('yrk.27.medina@gmail.com','Appsalon.com');
         $mail->Subject = 'Confirma tu cuenta';
@@ -35,7 +38,7 @@ Class Email{
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ".$this->nombre."</strong> Has creado tu cuenta en AppSalon, solo debes confirmarla presionando el siguiente enlace.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='https://shrouded-beach-53202.herokuapp.com/confirmar-cuenta?token=". $this->token ."'>Confirmar Cuenta</a></p>";//http://localhost:3000
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['SERVER_HOST'] . "confirmar-cuenta?token=". $this->token ."'>Confirmar Cuenta</a></p>";//http://localhost:3000
         $contenido .= '<p>Si no solicitaste esta cuenta, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
         $mail->Body = $contenido;
@@ -55,11 +58,11 @@ MAIL_ENCRYPTION=tls */
         //Crear el obj de email
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'fbce7677b12432';
-        $mail->Password = '1d8f9c16198f32';
+        $mail->Port = $_ENV['PORT'];
+        $mail->Username = $_ENV['USER'];
+        $mail->Password = $_ENV['PASS'];
         $mail->setFrom('yrk.27.medina@gmail.com');
         $mail->addAddress('yrk.27.medina@gmail.com','Appsalon.com');
         $mail->Subject = 'Reestablece tu contraseña';
@@ -71,7 +74,7 @@ MAIL_ENCRYPTION=tls */
 
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ".$this->nombre."</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='https://shrouded-beach-53202.herokuapp.com/recuperar?token=". $this->token ."'>Reestablecer Contraseña</a></p>";
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['SERVER_HOST'] . "recuperar?token=". $this->token ."'>Reestablecer Contraseña</a></p>";
         $contenido .= '<p>Si no solicitaste reestablecer tu contraseña, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
         $mail->Body = $contenido;
